@@ -1,0 +1,59 @@
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+      <input (input)="onSearch($event)" class="form-control mr-sm-2" type="search" placeholder="Search by Name" aria-label="Search">
+    </form>
+  </nav>
+
+<div class="table-responsive">
+
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th scope="col">Action</th>
+                <th scope="col">Client</th>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Country</th>
+                <th scope="col">State</th>
+                <th scope="col">City</th>
+                <th scope="col">Mobine No</th>
+                <th scope="col">Email</th>
+                <th scope="col">GST No</th>
+                <th scope="col">PAN No</th>
+                <th scope="col">Longitude</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Currency</th>
+                <th scope="col">Attachment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of filteredList; let i = index">
+                <td>
+                    <fa-icon data-toggle="tooltip" data-placement="top" title="View" (click)="onView(item?.id)" class="icon visible" [icon]="faEye"></fa-icon>
+                    <fa-icon data-toggle="tooltip" data-placement="top" title="Edit" (click)="onEdit(item?.id)" class="icon edit" [icon]="faEdit"></fa-icon>
+                    <fa-icon data-toggle="tooltip" data-placement="top" title="Remove" (click)="onRemove(item?.id)" class="icon remove" [icon]="faRemove"></fa-icon>
+                </td>
+                <td> {{item?.id}} </td>
+                <td> {{item?.client?.code}} </td>
+                <td> {{item?.client?.name}} </td>
+                <td> {{item?.client?.address}} </td>
+                <td> {{item?.client?.country}} </td>
+                <td> {{item?.client?.state}} </td>
+                <td> {{item?.client?.city}} </td>
+                <td> {{item?.client?.mobileNo}} </td>
+                <td> {{item?.client?.email}} </td>
+                <td> {{item?.client?.gstNo}} </td>
+                <td> {{item?.client?.panNo}} </td>
+                <td> {{item?.client?.longitude || "--"}} </td>
+                <td> {{item?.client?.latitude || "--"}} </td>
+                <td> {{item?.client?.currency}} </td>
+                <td>
+                    <img *ngIf="item.attachment?.content" [src]="item.attachment.content"
+                        alt="{{ item.attachment.name }}" style="max-width: 100px;" />
+                    <span *ngIf="!item.attachment">No Attachment</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

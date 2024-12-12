@@ -1,0 +1,95 @@
+
+<h3>Contact Person Details</h3>
+<form [formGroup]="personForm" (ngSubmit)="onPersonForm()">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input [readOnly]="isViewPage" type="text" class="form-control" formControlName="personName" id="name" placeholder="Enter Person Name">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="mobile">Mobile:</label>
+                    <input [readOnly]="isViewPage" type="number" class="form-control" formControlName="personMobile" id="mobile" placeholder="Enter Mobile No">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input [readOnly]="isViewPage" type="email" class="form-control" formControlName="personEmail" id="email" placeholder="Enter Email">
+                </div>
+                <div *ngIf="personForm.get('personEmail')?.touched || personForm.get('personEmail')?.dirty">
+                    <!-- <div *ngIf="personForm.get('personEmail')?.hasError('required')">
+                      <small class="text-danger">Email is required</small>
+                    </div> -->
+                    <div *ngIf="personForm.get('personEmail')?.hasError('email')">
+                      <small class="text-danger">Email is not valid</small>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="department">Department:</label>
+                    <input [readOnly]="isViewPage" type="text" class="form-control" formControlName="personDepartment" id="department" placeholder="Enter Department">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="designation">Designation:</label>
+                    <input [readOnly]="isViewPage" type="text" class="form-control" formControlName="personDesignation" id="designation" placeholder="Enter Designation">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-12">
+                    <button [disabled]="!personForm.get('personName')?.value || !personForm.get('personMobile')?.value || !personForm.get('personEmail')?.value || isViewPage" type="submit" class="btn btn-success">Add</button>
+                    <button (click)="onCancel()" type="button" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+    </div>
+
+    <div class="container data-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr *ngIf="contactPersonList && contactPersonList.length > 0">
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Department</th>
+                                <th>Designation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="contactPersonList && contactPersonList.length > 0; else noRows">
+                                <tr *ngFor="let item of contactPersonList">
+                                    <td>{{item?.personName}}</td>
+                                    <td>{{item?.personMobile}}</td>
+                                    <td>{{item?.personEmail}}</td>
+                                    <td>{{item?.personDepartment || "--"}}</td>
+                                    <td>{{item?.personDesignation || "--"}}</td>
+                                </tr>
+                            </ng-container>
+                            <ng-template #noRows>
+                                <tr>
+                                    <td colspan="6" style="text-align: center;height: 100px;">No Rows to Show</td>
+                                </tr>
+                            </ng-template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- <td colspan="2" style="text-align: center; height: 100px;">No Rows to Show</td> -->

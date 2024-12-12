@@ -1,0 +1,226 @@
+<div class="main-container">
+  <h3>Add/Update Data</h3>
+  <form [formGroup]="clientForm" (ngSubmit)="onSubmitData()">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="required" for="gstNo">GST No:</label>
+            <input [readOnly]="isViewPage" type="text" class="form-control" formControlName="gstNo" id="gstNo"
+              placeholder="Enter GST No">
+          </div>
+          <div *ngIf="clientForm.get('gstNo')?.touched || clientForm.get('gstNo')?.dirty">
+            <div *ngIf="clientForm.get('gstNo')?.hasError('required')">
+              <small class="text-danger">GST number is required</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="required" for="panNo">PAN No:</label>
+            <input [readOnly]="isViewPage" type="text" class="form-control" formControlName="panNo" id="panNo"
+              placeholder="Enter PAN No">
+          </div>
+          <div *ngIf="clientForm.get('panNo')?.touched || clientForm.get('panNo')?.dirty">
+            <div *ngIf="clientForm.get('panNo')?.hasError('required')">
+              <small class="text-danger">Pan number is required</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="required" for="code">Code:</label>
+            <input [readOnly]="isViewPage" type="number" class="form-control" formControlName="code" id="code"
+              placeholder="Enter Code">
+            <div *ngIf="clientForm.get('code')?.touched || clientForm.get('code')?.dirty">
+              <div *ngIf="clientForm.get('code')?.hasError('required')">
+                <small class="text-danger">Code is required</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="required" for="name">Name:</label>
+            <input [readOnly]="isViewPage" type="text" class="form-control" formControlName="name" id="name"
+              placeholder="Enter Name">
+          </div>
+          <div *ngIf="clientForm.get('name')?.touched || clientForm.get('name')?.dirty">
+            <div *ngIf="clientForm.get('name')?.hasError('required')">
+              <small class="text-danger">Name is required</small>
+            </div>
+            <div *ngIf="clientForm.get('name')?.hasError('maxlength')">
+              <small class="text-danger">Name cannot be 20 characters long</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="required" for="address">Address:</label>
+            <input [readOnly]="isViewPage" type="text" class="form-control" formControlName="address" id="address"
+              placeholder="Enter Address">
+          </div>
+          <div *ngIf="clientForm.get('address')?.touched || clientForm.get('address')?.dirty">
+            <div *ngIf="clientForm.get('address')?.hasError('required')">
+              <small class="text-danger">Address is required</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="required" for="pincode">Pincode:</label>
+            <input [readOnly]="isViewPage" type="number" class="form-control" formControlName="pincode" id="pincode"
+              placeholder="Enter Pincode">
+          </div>
+          <div *ngIf="clientForm.get('pincode')?.touched || clientForm.get('pincode')?.dirty">
+            <div *ngIf="clientForm.get('pincode')?.hasError('required')">
+              <small class="text-danger">Pincode is required</small>
+            </div>
+            <div *ngIf="clientForm.get('pincode')?.hasError('pattern')">
+              <small class="text-danger">Pincode must be 6 digit</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="required" for="country">Country:</label>
+            <select class="form-control" formControlName="country" id="country">
+              <option [disabled]="isViewPage" value="">Select Country</option>
+              <option [disabled]="isViewPage" value="india">India</option>
+              <option [disabled]="isViewPage" value="usa">USA</option>
+            </select>
+          </div>
+          <div *ngIf="clientForm.get('country')?.touched || clientForm.get('country')?.dirty">
+            <div *ngIf="clientForm.get('country')?.hasError('required')">
+              <small class="text-danger">Country is required</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="required" for="state">State:</label>
+            <select [disabled]="isViewPage" class="form-control" formControlName="state" id="state">
+              <option [disabled]="isViewPage" value="">Select State</option>
+              <option [disabled]="isViewPage" value="uttarpradesh">Uttar Pradesh</option>
+              <option [disabled]="isViewPage" value="maharashtra">Maharashtra</option>
+              <option [disabled]="isViewPage" value="gujrat">Gujrat</option>
+              <option [disabled]="isViewPage" value="maharashtra">Maharashtra</option>
+
+
+            </select>
+          </div>
+          <div *ngIf="clientForm.get('state')?.touched || clientForm.get('state')?.dirty">
+            <div *ngIf="clientForm.get('state')?.hasError('required')">
+              <small class="text-danger">State is required</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="required" for="city">City:</label>
+            <select [disabled]="isViewPage" class="form-control" formControlName="city" id="city">
+              <option [disabled]="isViewPage" value="">Select City</option>
+              <option [disabled]="isViewPage" value="agra">Agra</option>
+              <option [disabled]="isViewPage" value="mumbai">Mumbai</option>
+              <option [disabled]="isViewPage" value="noida">Noida</option>
+              <option [disabled]="isViewPage" value="noida">Surat</option>
+
+
+            </select>
+          </div>
+          <div *ngIf="clientForm.get('city')?.touched || clientForm.get('city')?.dirty">
+            <div *ngIf="clientForm.get('city')?.hasError('required')">
+              <small class="text-danger">City is required</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="required" for="mobileNo">Mobile No:</label>
+            <input [readOnly]="isViewPage" type="number" class="form-control" formControlName="mobileNo" id="mobileNo"
+              placeholder="Enter Mobile No">
+          </div>
+          <div *ngIf="clientForm.get('mobileNo')?.touched || clientForm.get('mobileNo')?.dirty">
+            <div *ngIf="clientForm.get('mobileNo')?.hasError('required')">
+              <small class="text-danger">Mobile number is required</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="required" for="email">Email:</label>
+            <input [readOnly]="isViewPage" type="email" class="form-control" formControlName="email" id="email"
+              placeholder="Enter Email">
+          </div>
+          <div *ngIf="clientForm.get('email')?.touched || clientForm.get('email')?.dirty">
+            <div *ngIf="clientForm.get('email')?.hasError('required')">
+              <small class="text-danger">Email is required</small>
+            </div>
+            <div *ngIf="clientForm.get('email')?.hasError('email')">
+              <small class="text-danger">Email is not valid</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="latitude">Latitude:</label>
+            <input [readOnly]="isViewPage" type="text" class="form-control" formControlName="latitude" id="latitude"
+              placeholder="Enter Latitude">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="longitude">Longitude:</label>
+            <input [readOnly]="isViewPage" type="text" class="form-control" formControlName="longitude" id="longitude"
+              placeholder="Enter Longitude">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="required" for="currency">Currency:</label>
+            <select class="form-control" formControlName="currency" id="currency">
+              <option [disabled]="isViewPage" value="">Select Currency</option>
+              <option [disabled]="isViewPage" value="usd">USD</option>
+              <option [disabled]="isViewPage" value="inr">INR</option>
+            </select>
+          </div>
+          <div *ngIf="clientForm.get('currency')?.touched || clientForm.get('currency')?.dirty">
+            <div *ngIf="clientForm.get('currency')?.hasError('required')">
+              <small class="text-danger">Currency is required</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group attachment">
+            <label for="longitude">Attachment:</label>
+            <input type="file" id="attachment" (change)="onFileSelected($event)" class="form-control" />
+          </div>
+          <div *ngIf="attachmentUrl">
+            <img [src]="attachmentUrl" alt="Image Preview" style="max-width: 200px;" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-contact-form [personData]="clientEditData?.person" [mode]="mode"
+      (contactAdded)="onContactAdded($event)"></app-contact-form>
+
+    <div class="col-md-12 button">
+      <button *ngIf="!isEdit else update" [disabled]="clientForm.invalid || isViewPage" type="submit"
+        class="btn btn-success">Save</button>
+      <ng-template #update>
+        <button (click)="onUpdateData()" [disabled]="clientForm.invalid || isViewPage" type="submit"
+          class="btn btn-success">Update</button>
+      </ng-template>
+      <button type="button" (click)="onCancel()" class="btn btn-danger">Cancel</button>
+    </div>
+  </form>
+</div>
